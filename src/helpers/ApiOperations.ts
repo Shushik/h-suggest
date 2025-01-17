@@ -86,6 +86,9 @@ export class ApiRequest<TRes = void, TErr = void> {
 
 }
 
-export function useApiRequest(url: string, args?: IApiArgs) {
-  return new ApiRequest(url, args).exec()
+export function useApiRequest<TRes = void, TErr = void>(
+  url: string,
+  args?: IApiArgs
+): Promise<IApiRes<TRes, TErr>> {
+  return new ApiRequest<TRes, TErr>(url, args).exec()
 }
