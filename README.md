@@ -4,7 +4,7 @@
 
 ```console
 $ git clone https://github.com/Shushik/h-suggest.git
-$ cd habr-suggest
+$ cd h-suggest
 $ nvm use 18
 $ npm i
 $ npm run dev
