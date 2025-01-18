@@ -51,11 +51,15 @@ body {
 }
 
 body {
-  font-size: 12px;
+  font-size: vars.$fontSize;
   font-family: "PT Sans", sans-serif;
 
-  line-height: 14px;
+  line-height: vars.$lineHeight;
   text-align: left;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   color: vars.$colorDark;
   background: vars.$backgroundLight;
