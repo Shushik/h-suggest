@@ -1,29 +1,42 @@
 <template>
-  <div style="width: 300px;margin-top: 100px;">
-    <InputSuggest
-      :getData="onSuggestGetData"
-      :getValue="onSuggestGetValue"
-      name="habr-suggest"
+  <Form>
+    <FormField
+      required
+      labelFor="habr-suggest"
     >
-      <template #selected="{ item, onClear }">
-        <Tag
-          v-if="item"
-          @remove="onClear"
-        >@{{ item.alias }}</Tag>
+      <template #label>
+        Пользователь или компания
       </template>
-      <template #item="{ item }">
-        <UserCard
-          v-if="item"
-          :user="item"
-          :aria-label="item.name || item.alias"
-          size="S"
-        />
+      <template #input>
+        <InputSuggest
+          :getData="onSuggestGetData"
+          :getValue="onSuggestGetValue"
+          name="habr-suggest"
+        >
+          <template #selected="{ item, onClear }">
+            <Tag
+              v-if="item"
+              @remove="onClear"
+            >@{{ item.alias }}
+            </Tag>
+          </template>
+          <template #item="{ item }">
+            <UserCard
+              v-if="item"
+              :user="item"
+              :aria-label="item.name || item.alias"
+              size="S"
+            />
+          </template>
+        </InputSuggest>
       </template>
-    </InputSuggest>
-  </div>
+    </FormField>
+  </Form>
 </template>
 <script setup lang="ts">
 import Tag from '@/components/Tag.vue'
+import Form from '@/components/Form.vue'
+import FormField from '@/components/FormField.vue'
 import UserCard from '@/components/UserCard.vue'
 import InputSuggest from '@/components/InputSuggest.vue'
 import { ApiRequest } from '@/helpers/ApiOperations'

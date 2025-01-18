@@ -1,0 +1,37 @@
+$fontSize: 12px;
+$fontSizeS: 10px;
+$fontSizeL: 14px;
+$fontSizeXL: 16px;
+
+$fontWeight: 300;
+$fontWeightL: 400;
+$fontWeightXL: 600;
+
+$lineHeight: 14px;
+$lineHeightS: 12px;
+$lineHeightL: 16px;
+$lineHeightXL: 18px;
+
+$colorDark: #464646;
+$colorLight: #FFF;
+$colorImportant: #C00;
+$colorTagDefault: #92A8BA;
+$colorBorderDefault: #E4E4E4;
+$colorBorderHovered: #999;
+
+$backgroundDark: #000;
+$backgroundLight: #FFF;
+
+$gap: 4px;
+$gapS: 2px;
+$gapXS: 1px;
+$gapL: $gap * 2;
+$gapXL: $gap * 3;
+$gapXXL: $gap * 4;
+
+$inputWidthMin: 300px;
+$inputHeightMin: 40px;
+
+$formMinWidth: 600px + ($gapL * 2);
+
+$formFieldWidthMin: 200px;
