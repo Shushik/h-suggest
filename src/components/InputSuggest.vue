@@ -3,6 +3,7 @@
     :class="{
       [$style.inputSuggest]: true,
       [$style.inputSuggestHasError]: hasError,
+      [$style.inputSuggestIsFocused]: isFocused,
     }"
   >
     <DropDown
@@ -31,8 +32,14 @@
             :readonly="readonly"
             :maxlength="maxlength"
             :placeholder="placeholder"
+            :autocomplete="autocomplete"
+            :aria-disabled="disabled"
+            :aria-expanded="isShown"
             ref="inputRef"
             type="text"
+            aria-label="Search"
+            aria-autocomplete="inline"
+            @blur="onBlur"
             @focus="onFocus"
             @keydown="(event) => onKeydown(event, isShown)"
           />
@@ -64,6 +71,11 @@
   color: #464646;
   background: #FFF;
   border: #E4E4E4 solid 1px;
+  border-radius: 4px;
+}
+
+.inputSuggestIsFocused .trigger {
+  border-color: #999;
 }
 
 .inputSuggestHasError .trigger {
@@ -97,6 +109,7 @@ interface IProps {
   id?: string
   name: string
   placeholder?: string
+  autocomplete?: 'on' | 'off'
   modelValue?: TItem | null
   getData: (raw: string) => Promise<IApiRes<TItem[]>>
   getValue: (raw: TItem) => string
@@ -111,11 +124,13 @@ const ONCHANGE_INTERVAL = 150
 
 const emit = defineEmits([ 'update:modelValue' ])
 const props = withDefaults(defineProps<IProps>(), {
-  minlength: 3
+  minlength: 3,
+  autoComplete: 'off',
 })
 const slots = defineSlots<ISlots>()
 
 const isShown = ref<boolean>(false)
+const isFocused = ref<boolean>(false)
 const hasError = ref<boolean>(false)
 const inputValue = ref<string>('')
 const inputRef = ref<HTMLInputElement | null>(null)
@@ -157,8 +172,15 @@ function onClear() {
   })
 }
 
+function onBlur() {
+  if (!inputValue.value) {
+    isFocused.value = false
+  }
+}
+
 function onFocus() {
   hasError.value = false
+  isFocused.value = true
 
   showSuggest()
 }
