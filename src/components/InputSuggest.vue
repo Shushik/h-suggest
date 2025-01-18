@@ -178,12 +178,20 @@ function onClear() {
 }
 
 function onBlur() {
+  if (props.disabled || props.readonly) {
+    return
+  }
+
   if (!inputValue.value) {
     isFocused.value = false
   }
 }
 
 function onFocus() {
+  if (props.disabled || props.readonly) {
+    return
+  }
+
   hasError.value = false
   isFocused.value = true
 
@@ -230,7 +238,7 @@ async function onChange(val?: string) {
 
   inputItems.value = data as TItem[] | null
 
-  if (data.length) {
+  if (data && data.length) {
     isShown.value = true
   }
 }
