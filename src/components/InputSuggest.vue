@@ -25,11 +25,12 @@
           <input
             v-show="!dropdownValue"
             v-model="inputValue"
-            :id="id"
+            :id="id || name"
             :name="name"
             :class="$style.input"
             :disabled="disabled"
             :readonly="readonly"
+            :required="required"
             :maxlength="maxlength"
             :placeholder="placeholder"
             :autocomplete="autocomplete"
@@ -55,32 +56,35 @@
   </div>
 </template>
 <style module lang="scss">
+@use "@/assets/scss/vars";
+
 .trigger {
-  font-size: 16px;
-  line-height: 1.3;
+  font-size: vars.$fontSizeXL;
+
+  line-height: vars.$lineHeightXL;
 
   display: flex;
   align-items: center;
 
   width: 100%;
-  min-width: 40px;
-  min-height: 40px;
-  padding: 4px 8px;
+  min-width: vars.$inputWidthMin;
+  min-height: vars.$inputHeightMin;
+  padding: vars.$gap vars.$gapL;
   box-sizing: border-box;
 
-  color: #464646;
-  background: #FFF;
-  border: #E4E4E4 solid 1px;
-  border-radius: 4px;
+  color: vars.$colorDark;
+  background: vars.$backgroundLight;
+  border: vars.$colorBorderDefault solid 1px;
+  border-radius: vars.$gap;
 }
 
 .inputSuggestIsFocused .trigger {
-  border-color: #999;
+  border-color: vars.$colorBorderHovered;
 }
 
 .inputSuggestHasError .trigger {
-  border-color: rgb(255, 0, 0, 0.2);
-  box-shadow: 0 1px 15px rgba(255, 0, 0, .2);
+  border-color: vars.$colorImportant;
+  box-shadow: 0 1px vars.$gapXL rgba(vars.$colorImportant, 0.3);
 }
 
 .input {
@@ -104,6 +108,7 @@ import { setTimer, clearTimer } from '@/helpers/TimerOperations'
 interface IProps {
   disabled?: boolean
   readonly?: boolean
+  required?: boolean
   minlength?: number
   maxlength?: number
   id?: string
@@ -116,7 +121,7 @@ interface IProps {
 }
 
 interface ISlots {
-  item(props: { item: TItem | null }),
+  item(props: { item: TItem | null })
   selected(props: { item: TItem | null, onClear: () => void })
 }
 

@@ -9,37 +9,36 @@
   </div>
 </template>
 <style module lang="scss">
-:root {
-  --tag-color: #FFF;
-  --tag-background: #92A8BA;
-}
+@use "@/assets/scss/vars";
 
 .tag {
-  font-size: 12px;
-  font-weight: 400;
+  font-size: vars.$fontSize;
+  font-weight: vars.$fontWeightL;
 
-  line-height: 14px;
+  line-height: vars.$lineHeight;
 
   display: inline-block;
 
-  padding: 4px 8px;
+  padding: vars.$gap vars.$gapL;
 
-  color: var(--tag-color);
-  background: var(--tag-background);
-  border-radius: 2px;
+  color: vars.$colorLight;
+  background: vars.$colorTagDefault;
+  border-radius: vars.$gapS;
 
   user-select: none;
 }
 
 .remove {
-  font-size: 10px;
+  font-size: vars.$fontSizeS;
   font-style: normal;
-  font-weight: 600;
+  font-weight: vars.$fontWeightXL;
+
+  line-height: vars.$lineHeightS;
 
   display: inline-block;
   cursor: pointer;
 
-  margin-left: 8px;
+  margin-left: vars.$gapL;
 }
 </style>
 <script setup lang="ts">
