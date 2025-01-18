@@ -1,6 +1,6 @@
 import { setTimer, clearTimer } from '@/helpers/TimerOperations';
 
-export const ApiHttpCodes = {
+export const API_HTTP_CODES = {
   OK: 200,
   BAD_REQUEST: 400,
   NOT_AUTHORIZED: 403,
@@ -8,10 +8,10 @@ export const ApiHttpCodes = {
   INTERNAL_SERVER_ERROR: 500,
 }
 
-export const ApiHttpMessages = Object.
-  keys(ApiHttpCodes).
+export const API_HTTP_MESSAGES = Object.
+  keys(API_HTTP_CODES).
   reduce((out: { [id: string]: string }, item: string) => {
-    out[`${ApiHttpCodes[item]}`] = item
+    out[`${API_HTTP_CODES[item]}`] = item
 
     return out
   }, { })
@@ -68,7 +68,7 @@ export class ApiRequest<TRes = void, TErr = void> {
     if (!raw.ok) {
       if (raw.status && raw.status >= 400) {
         return {
-          error: (ApiHttpMessages[raw.status] as TApiErr<string>) || 'NO_HTTP_CODE'
+          error: (API_HTTP_MESSAGES[raw.status] as TApiErr<string>) || 'NO_HTTP_CODE'
         }
       }
 
