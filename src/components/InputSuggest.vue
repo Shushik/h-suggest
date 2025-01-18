@@ -102,7 +102,7 @@
 </style>
 <script setup lang="ts" generic="TItem">
 import DropDown from '@/components/DropDown.vue'
-import { ref, watch, nextTick } from 'vue'
+import {ref, watch, nextTick, onMounted} from 'vue'
 import { setTimer, clearTimer } from '@/helpers/TimerOperations'
 
 interface IProps {
@@ -144,14 +144,10 @@ const dropdownValue = ref<unknown>(null)
 
 let timerId = <TimerId>null
 
-watch(
-  () => props.modelValue,
-  (val?: TItem | null) => onSelect(val)
-)
+watch(() => props.modelValue, (val?: TItem | null) => onSelect(val))
 watch(() => inputValue.value, (val: string) => onDelayChange(val))
 watch(() => dropdownValue.value, (val: unknown) => onSelect(val as TItem | null))
-
-onSelect(props.modelValue)
+onMounted(() => onSelect(props.modelValue))
 
 function showSuggest() {
   isShown.value = false
