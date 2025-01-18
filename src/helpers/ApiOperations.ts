@@ -75,9 +75,15 @@ export class ApiRequest<TRes = void, TErr = void> {
       return { error: 'NOT_OK' }
     }
 
-    const json = await raw.json() as IApiRaw<TRes>
+    let json = <IApiRaw<TRes> | null>null
 
-    if (!json || !json.data) {
+    try {
+      json = await raw.json()
+    } catch (exc) {
+      return { error: 'NO_JSON_DATA' }
+    }
+
+    if (!json) {
       return { error: 'NO_JSON_DATA' }
     }
 

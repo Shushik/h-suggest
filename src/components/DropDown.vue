@@ -8,6 +8,7 @@
       :onHide="onHide"
       :onShow="onShow"
       :setAnchor="setAnchor"
+      :aria-hidden="!isShown"
       name="anchor"
     />
     <div
@@ -15,6 +16,7 @@
       :class="$style.dropDownItems"
       :data-position="itemsPos"
       ref="itemsRef"
+      role="listbox"
     >
       <div
         v-for="(item, itemPos) in items"
@@ -25,6 +27,7 @@
           [$style.dropDownItemIsHovered]: hoveredItemPos === itemPos,
           [$style.dropDownItemIsSelected]: selectedItemPos === itemPos,
         }"
+        role="option"
         @click="onClick(itemPos)"
         @mouseout="onMouseout"
         @mouseover="onMouseover(itemPos)"
