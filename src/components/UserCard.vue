@@ -78,7 +78,7 @@ import UserAvatar from '@/components/UserAvatar.vue'
 
 interface IProps {
   size?: TUserCardSize
-  user: InputSuggestApiItem | null
+  user: IUserCardItem | null
 }
 
 defineProps<IProps>()

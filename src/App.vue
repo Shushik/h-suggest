@@ -1,8 +1,10 @@
 <template>
-  <Form>
+  <Form
+    name="form-habr-suggest"
+  >
     <FormField
       required
-      labelFor="habr-suggest"
+      labelFor="field-habr-suggest"
     >
       <template #label>
         Пользователь или компания
@@ -11,7 +13,7 @@
         <InputSuggest
           :getData="onSuggestGetData"
           :getValue="onSuggestGetValue"
-          name="habr-suggest"
+          name="field-habr-suggest"
         >
           <template #selected="{ item, onClear }">
             <Tag
@@ -43,10 +45,10 @@ import { ApiRequest } from '@/helpers/ApiOperations'
 
 const API_URL = 'https://habr.com/kek/v2/publication/suggest-mention?q={queryString}'
 
-let req = <ApiRequest<InputSuggestApiItem[]> | null>null
+let req = <ApiRequest<IUserCardItem[]> | null>null
 
 function onSuggestGetValue(raw: unknown): string {
-  const item = raw as InputSuggestApiItem
+  const item = raw as IUserCardItem
 
   return item.alias
 }
@@ -58,7 +60,7 @@ async function onSuggestGetData(raw: string) {
     req = null
   }
 
-  req = new ApiRequest<InputSuggestApiItem[]>(
+  req = new ApiRequest<IUserCardItem[]>(
     API_URL.replace(/\{[\s]*queryString[\s]*\}/g, raw)
   )
 

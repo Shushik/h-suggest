@@ -60,11 +60,11 @@
 }
 </style>
 <script setup lang="ts">
-import {computed, ref} from 'vue'
+import { ref, computed } from 'vue'
 
 interface IProps {
   size?: TUserCardSize
-  user: InputSuggestApiItem
+  user: IUserCardItem
 }
 
 const props = defineProps<IProps>()
