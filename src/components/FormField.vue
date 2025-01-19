@@ -68,8 +68,8 @@
 
 .formFieldIsRequired .formFieldLabel::before {
   @include vars.fontSize("L");
+  @include vars.fontWeight("XL");
 
-  font-weight: vars.$fontWeightXL;
   font-family: serif;
 
   content: "*";

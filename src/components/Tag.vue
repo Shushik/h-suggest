@@ -14,8 +14,7 @@
 
 .tag {
   @include vars.fontSize;
-
-  font-weight: vars.$fontWeightL;
+  @include vars.fontWeight("L");
 
   display: inline-block;
 
@@ -30,9 +29,9 @@
 
 .remove {
   @include vars.fontSize("S");
+  @include vars.fontWeight("L");
 
   font-style: normal;
-  font-weight: vars.$fontWeightXL;
 
   display: inline-block;
   cursor: pointer;

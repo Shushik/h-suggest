@@ -23,9 +23,8 @@
 
 .userAvatar {
   @include vars.fontSize("L");
+  @include vars.fontWeight("XL");
   @include vars.avatarSize;
-
-  font-weight: vars.$fontWeightXL;
 
   text-align: center;
 

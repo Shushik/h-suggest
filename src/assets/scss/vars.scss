@@ -7,9 +7,11 @@ $fontSize: (
   XL: 16px,
 );
 
-$fontWeight: 300;
-$fontWeightL: 400;
-$fontWeightXL: 600;
+$fontWeight: (
+  M: 300,
+  L: 400,
+  XL: 600,
+);
 
 $lineHeight: (
   M: 14px,
@@ -48,16 +50,32 @@ $formMinWidth: 600px + ($gapL * 2);
 
 $formFieldWidthMin: 200px;
 
-$userAvatarSize: (
+$avatarSize: (
   M: 50px,
   S: 20px,
   L: 80px,
 );
 
 @mixin fontSize($size: "M") {
+  @if not map.has-key($fontSize, $size) {
+    @warn "Unknown font size: #{$size}";
+  }
+
+  @if not map.has-key($lineHeight, $size) {
+    @warn "Unknown line height: #{$size}";
+  }
+
   font-size: map.get($fontSize, $size);
 
   line-height: map.get($lineHeight, $size);
+}
+
+@mixin fontWeight($weight: "M") {
+  @if not map.has-key($fontWeight, $weight) {
+    @warn "Unknown font weight: #{$weight}";
+  }
+
+  font-weight: map.get($fontWeight, $weight);
 }
 
 @mixin boxShadow($color: $backgroundDark) {
@@ -65,6 +83,14 @@ $userAvatarSize: (
 }
 
 @mixin avatarSize($size: 'M') {
-  width: map.get($userAvatarSize, $size);
-  height: map.get($userAvatarSize, $size);
+  @if not map.has-key($avatarSize, $size) {
+    @warn "Unknown avatar size: #{$size}";
+  }
+
+  width: map.get($avatarSize, $size);
+  height: map.get($avatarSize, $size);
+}
+
+@mixin zIndex($add: 0) {
+  z-index: 1000 + $add;
 }

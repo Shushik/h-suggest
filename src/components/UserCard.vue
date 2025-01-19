@@ -40,7 +40,7 @@
 }
 
 .userCardName {
-  font-weight: vars.$fontWeightL;
+  @include vars.fontWeight("L");
 
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -71,7 +71,7 @@
 .userCardSizeS .userCardAlias {
   white-space: nowrap;
 
-  margin-left: map.get(vars.$userAvatarSize, 'S') + vars.$gapL;
+  margin-left: map.get(vars.$avatarSize, 'S') + vars.$gapL;
 }
 </style>
 <script setup lang="ts">

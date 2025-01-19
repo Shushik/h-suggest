@@ -44,17 +44,13 @@
 @use "@/assets/scss/vars";
 
 .dropDown {
-  //font-size: 1rem;
-  //
-  //line-height: 1.2rem;
-
   position: relative;
 }
 
 .dropDownItem {
   cursor: pointer;
 
-  min-height: 40px;
+  min-height: vars.$inputHeightMin;
   padding: vars.$gap vars.$gapL;
   box-sizing: border-box;
 }
@@ -70,15 +66,16 @@
 .dropDownItems {
   @include vars.fontSize("XL");
   @include vars.boxShadow;
+  @include vars.zIndex;
 
   position: absolute;
   top: 100%;
   left: 50%;
-  z-index: 1000;
   transform: translateX(-50%);
 
   min-width: 100%;
   max-height: 160px;
+  margin-top: vars.$gap;
   overflow-y: auto;
 
   background: vars.$backgroundLight;
