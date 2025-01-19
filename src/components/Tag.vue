@@ -2,6 +2,7 @@
   <div :class="$style.tag">
     <slot/>
     <i
+      v-if="removable"
       :class="$style.remove"
       title="Очистить"
       @click="$emit('remove')"
