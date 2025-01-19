@@ -51,10 +51,10 @@ body {
 }
 
 body {
-  font-size: vars.$fontSize;
+  @include vars.fontSize;
+
   font-family: "PT Sans", sans-serif;
 
-  line-height: vars.$lineHeight;
   text-align: left;
 
   display: flex;

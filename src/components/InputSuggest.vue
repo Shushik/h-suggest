@@ -63,9 +63,7 @@
 @use "@/assets/scss/vars";
 
 .trigger {
-  font-size: vars.$fontSizeXL;
-
-  line-height: vars.$lineHeightXL;
+  @include vars.fontSize("XL");
 
   display: flex;
   align-items: center;
@@ -80,6 +78,8 @@
   background: vars.$backgroundLight;
   border: vars.$colorBorderDefault solid 1px;
   border-radius: vars.$gap;
+
+  transition: border-color vars.$transitionDelay;
 }
 
 .input {
@@ -110,8 +110,9 @@
 }
 
 .inputSuggestHasError .trigger {
+  @include vars.boxShadow(vars.$colorImportant);
+
   border-color: vars.$colorImportant;
-  box-shadow: 0 1px vars.$gapXL rgba(vars.$colorImportant, 0.3);
 }
 
 .inputSuggestIsReadonly .input,

@@ -41,10 +41,12 @@
   </div>
 </template>
 <style module lang="scss">
-.dropDown {
-  font-size: 1rem;
+@use "@/assets/scss/vars";
 
-  line-height: 1.2rem;
+.dropDown {
+  //font-size: 1rem;
+  //
+  //line-height: 1.2rem;
 
   position: relative;
 }
@@ -53,16 +55,22 @@
   cursor: pointer;
 
   min-height: 40px;
-  padding: 4px 8px;
+  padding: vars.$gap vars.$gapL;
   box-sizing: border-box;
 }
 
-.dropDownItemIsHovered,
+.dropDownItemIsHovered {
+  background: vars.$backgroundHovered;
+}
+
 .dropDownItemIsSelected {
-  background: #F4F4F4;
+  background: vars.$backgroundSelected;
 }
 
 .dropDownItems {
+  @include vars.fontSize("XL");
+  @include vars.boxShadow;
+
   position: absolute;
   top: 100%;
   left: 50%;
@@ -73,9 +81,8 @@
   max-height: 160px;
   overflow-y: auto;
 
-  background: #FFF;
-  border-radius: 0.3rem;
-  box-shadow: 0 1px 15px rgba(0, 0, 0, .2);
+  background: vars.$backgroundLight;
+  border-radius: vars.$gap;
 }
 
 .dropDownItems[data-position="top"] {
