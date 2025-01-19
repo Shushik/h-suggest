@@ -74,7 +74,7 @@
 
   content: "*";
   position: absolute;
-  top: vars.$gapS;
+  top: vars.$gap;
   left: 0;
 
   color: vars.$colorImportant;
