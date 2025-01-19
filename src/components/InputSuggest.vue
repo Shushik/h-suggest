@@ -37,6 +37,7 @@
             :aria-disabled="disabled"
             :aria-expanded="isShown"
             ref="inputRef"
+            role="combobox"
             type="text"
             aria-label="Search"
             aria-autocomplete="inline"

@@ -112,7 +112,7 @@ interface IProps {
   layout?: 'H' | 'V'
 }
 
-const props = withDefaults(defineProps<IProps>(), {
+withDefaults(defineProps<IProps>(), {
   layout: 'H',
 })
 </script>
