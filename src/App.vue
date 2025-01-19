@@ -20,6 +20,7 @@
             <Tag
               v-if="item"
               removable
+              removeTitle="Очистить поле"
               @remove="onClear"
             >@{{ item.alias }}</Tag>
           </template>

@@ -43,6 +43,7 @@
 <style module lang="scss">
 @use "@/assets/scss/vars";
 
+$itemsInScroll: 4;
 $itemHeightMin: 48px;
 
 .dropDown {
@@ -76,7 +77,7 @@ $itemHeightMin: 48px;
   transform: translateX(-50%);
 
   min-width: 100%;
-  max-height: $itemHeightMin * 4;
+  max-height: $itemHeightMin * $itemsInScroll;
   margin-top: vars.$gap;
   overflow-y: auto;
 
