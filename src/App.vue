@@ -21,8 +21,7 @@
               v-if="item"
               removable
               @remove="onClear"
-            >@{{ item.alias }}
-            </Tag>
+            >@{{ item.alias }}</Tag>
           </template>
           <template #item="{ item }">
             <UserCard
