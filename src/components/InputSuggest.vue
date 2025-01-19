@@ -23,22 +23,23 @@
             name="selected"
           />
           <input
-            v-show="!dropdownValue"
             v-model="inputValue"
             :id="id || name"
             :name="name"
+            :type="dropdownValue ? 'hidden' : 'text'"
             :class="$style.input"
             :disabled="disabled"
+            :tabindex="disabled ? undefined : tabindex"
             :readonly="readonly"
             :required="required"
             :maxlength="maxlength"
+            :autofocus="autofocus"
             :placeholder="placeholder"
             :autocomplete="autocomplete"
             :aria-disabled="disabled"
             :aria-expanded="isShown"
             ref="inputRef"
             role="combobox"
-            type="text"
             aria-label="Search"
             aria-autocomplete="inline"
             @blur="onBlur"
@@ -110,6 +111,8 @@ interface IProps {
   disabled?: boolean
   readonly?: boolean
   required?: boolean
+  autofocus?: boolean
+  tabindex?: number
   minlength?: number
   maxlength?: number
   id?: string
