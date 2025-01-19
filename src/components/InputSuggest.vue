@@ -64,7 +64,6 @@
 
 .trigger {
   @include vars.fontSize("XL");
-  //@include vars.zIndex(1);
 
   display: flex;
   align-items: center;
@@ -94,6 +93,10 @@
   background: inherit;
   border-width: 0;
   outline: none;
+}
+
+.input::placeholder {
+  color: vars.$colorMuted;
 }
 
 .inputSuggestIsFocused .trigger {
@@ -218,9 +221,7 @@ function onFocus() {
 }
 
 function onSelect(raw?: TItem | null) {
-  if (!raw) {
-    return ''
-  }
+  dropdownValue.value = raw
 
   emit('update:modelValue', raw)
 }

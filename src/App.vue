@@ -14,6 +14,7 @@
           :getData="onSuggestGetData"
           :getValue="onSuggestGetValue"
           name="field-habr-suggest"
+          placeholder="Поиск"
         >
           <template #selected="{ item, onClear }">
             <Tag

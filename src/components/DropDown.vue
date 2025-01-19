@@ -222,6 +222,10 @@ function onHide() {
   hoveredItemPos.value = -1
   selectedItemPos.value = -1
 
+  if (itemsRef.value) {
+    itemsRef.value.scrollTop = 0
+  }
+
   setHoveredItemRef(null)
 
   window.removeEventListener('click', onOuterClick)
@@ -233,6 +237,8 @@ function onShow() {
   if (isShown.value) {
     return
   }
+
+  innerClick = false
 
   isShown.value = true
 
@@ -318,7 +324,6 @@ function onKeydown(event: KeyboardEvent) {
     case 'Escape':
       event.preventDefault()
       onHide()
-      console.log('Escape')
       break
 
     case 38:
