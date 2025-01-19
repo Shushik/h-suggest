@@ -4,6 +4,8 @@
       [$style.inputSuggest]: true,
       [$style.inputSuggestHasError]: hasError,
       [$style.inputSuggestIsFocused]: isFocused,
+      [$style.inputSuggestIsDisabled]: disabled,
+      [$style.inputSuggestIsReadonly]: readonly,
     }"
   >
     <DropDown
@@ -61,9 +63,8 @@
 @use "@/assets/scss/vars";
 
 .trigger {
-  font-size: vars.$fontSizeXL;
-
-  line-height: vars.$lineHeightXL;
+  @include vars.fontSize("XL");
+  //@include vars.zIndex(1);
 
   display: flex;
   align-items: center;
@@ -78,15 +79,8 @@
   background: vars.$backgroundLight;
   border: vars.$colorBorderDefault solid 1px;
   border-radius: vars.$gap;
-}
 
-.inputSuggestIsFocused .trigger {
-  border-color: vars.$colorBorderHovered;
-}
-
-.inputSuggestHasError .trigger {
-  border-color: vars.$colorImportant;
-  box-shadow: 0 1px vars.$gapXL rgba(vars.$colorImportant, 0.3);
+  transition: border-color vars.$transitionDelay;
 }
 
 .input {
@@ -101,10 +95,35 @@
   border-width: 0;
   outline: none;
 }
+
+.inputSuggestIsFocused .trigger {
+  border-color: vars.$colorBorderHovered;
+}
+
+.inputSuggestIsDisabled .input,
+.inputSuggestIsDisabled .trigger {
+  cursor: not-allowed;
+}
+
+.inputSuggestIsDisabled .trigger,
+.inputSuggestIsDisabled.inputSuggestIsFocused .trigger {
+  background-color: vars.$backgroundDisabled;
+}
+
+.inputSuggestHasError .trigger {
+  @include vars.boxShadow(vars.$colorImportant);
+
+  border-color: vars.$colorImportant;
+}
+
+.inputSuggestIsReadonly .input,
+.inputSuggestIsReadonly .trigger {
+  cursor: default;
+}
 </style>
 <script setup lang="ts" generic="TItem">
 import DropDown from '@/components/DropDown.vue'
-import {ref, watch, nextTick, onMounted} from 'vue'
+import { ref, watch, nextTick, onMounted } from 'vue'
 import { setTimer, clearTimer } from '@/helpers/TimerOperations'
 
 interface IProps {

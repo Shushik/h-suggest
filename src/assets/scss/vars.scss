@@ -1,26 +1,38 @@
-$fontSize: 12px;
-$fontSizeS: 10px;
-$fontSizeL: 14px;
-$fontSizeXL: 16px;
+@use "sass:map";
 
-$fontWeight: 300;
-$fontWeightL: 400;
-$fontWeightXL: 600;
+$fontSize: (
+  M: 12px,
+  S: 10px,
+  L: 14px,
+  XL: 16px,
+);
 
-$lineHeight: 14px;
-$lineHeightS: 12px;
-$lineHeightL: 16px;
-$lineHeightXL: 18px;
+$fontWeight: (
+  M: 300,
+  L: 400,
+  XL: 600,
+);
+
+$lineHeight: (
+  M: 14px,
+  S: 12px,
+  L: 16px,
+  XL: 18px
+);
 
 $colorDark: #464646;
 $colorLight: #FFF;
+$colorMuted: #999;
 $colorImportant: #C00;
 $colorTagDefault: #92A8BA;
 $colorBorderDefault: #E4E4E4;
-$colorBorderHovered: #999;
+$colorBorderHovered: $colorMuted;
 
 $backgroundDark: #000;
 $backgroundLight: #FFF;
+$backgroundHovered: #F4F4F4;
+$backgroundDisabled: #EDEDED;
+$backgroundSelected: #F4F4F4;
 
 $gap: 4px;
 $gapS: 2px;
@@ -29,9 +41,56 @@ $gapL: $gap * 2;
 $gapXL: $gap * 3;
 $gapXXL: $gap * 4;
 
+$transitionDelay: 0.3s;
+
 $inputWidthMin: 300px;
 $inputHeightMin: 40px;
 
 $formMinWidth: 600px + ($gapL * 2);
 
 $formFieldWidthMin: 200px;
+
+$avatarSize: (
+  M: 50px,
+  S: 20px,
+  L: 80px,
+);
+
+@mixin fontSize($size: "M") {
+  @if not map.has-key($fontSize, $size) {
+    @warn "Unknown font size: #{$size}";
+  }
+
+  @if not map.has-key($lineHeight, $size) {
+    @warn "Unknown line height: #{$size}";
+  }
+
+  font-size: map.get($fontSize, $size);
+
+  line-height: map.get($lineHeight, $size);
+}
+
+@mixin fontWeight($weight: "M") {
+  @if not map.has-key($fontWeight, $weight) {
+    @warn "Unknown font weight: #{$weight}";
+  }
+
+  font-weight: map.get($fontWeight, $weight);
+}
+
+@mixin boxShadow($color: $backgroundDark) {
+  box-shadow: 0 1px $gapXXL rgba($color, 0.3);
+}
+
+@mixin avatarSize($size: 'M') {
+  @if not map.has-key($avatarSize, $size) {
+    @warn "Unknown avatar size: #{$size}";
+  }
+
+  width: map.get($avatarSize, $size);
+  height: map.get($avatarSize, $size);
+}
+
+@mixin zIndex($add: 0) {
+  z-index: 1000 + $add;
+}

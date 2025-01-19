@@ -13,10 +13,8 @@
 @use "@/assets/scss/vars";
 
 .tag {
-  font-size: vars.$fontSize;
-  font-weight: vars.$fontWeightL;
-
-  line-height: vars.$lineHeight;
+  @include vars.fontSize;
+  @include vars.fontWeight("L");
 
   display: inline-block;
 
@@ -30,11 +28,10 @@
 }
 
 .remove {
-  font-size: vars.$fontSizeS;
-  font-style: normal;
-  font-weight: vars.$fontWeightXL;
+  @include vars.fontSize("S");
+  @include vars.fontWeight("L");
 
-  line-height: vars.$lineHeightS;
+  font-style: normal;
 
   display: inline-block;
   cursor: pointer;

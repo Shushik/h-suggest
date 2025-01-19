@@ -19,17 +19,20 @@
   </div>
 </template>
 <style module lang="scss">
+@use "@/assets/scss/vars";
+
 .userAvatar {
-  font-weight: 600;
+  @include vars.fontSize("L");
+  @include vars.fontWeight("XL");
+  @include vars.avatarSize;
+
   text-align: center;
 
   display: inline-block;
 
-  width: 50px;
-  height: 50px;
   overflow: hidden;
 
-  border-radius: 0.3rem;
+  border-radius: vars.$gapL;
 }
 
 .userAvatar::before {
@@ -43,15 +46,13 @@
 }
 
 .userAvatarSizeS {
-  font-size: 0.9rem;
-
-  width: 20px;
-  height: 20px;
+  @include vars.fontSize("L");
+  @include vars.avatarSize("S");
 }
 
 .userAvatarSizeL {
-  width: 80px;
-  height: 80px;
+  @include vars.fontSize("XL");
+  @include vars.avatarSize("L");
 }
 
 .userAvatarPic {

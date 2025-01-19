@@ -18,6 +18,7 @@
           <template #selected="{ item, onClear }">
             <Tag
               v-if="item"
+              removable
               @remove="onClear"
             >@{{ item.alias }}
             </Tag>

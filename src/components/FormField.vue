@@ -47,9 +47,7 @@
 }
 
 .formFieldLabel {
-  font-size: vars.$fontSizeXL;
-
-  line-height: vars.$lineHeightXL;
+  @include vars.fontSize("XL");
 
   display: block;
 
@@ -69,11 +67,10 @@
 }
 
 .formFieldIsRequired .formFieldLabel::before {
-  font-size: vars.$fontSizeL;
-  font-weight: vars.$fontWeightXL;
-  font-family: serif;
+  @include vars.fontSize("L");
+  @include vars.fontWeight("XL");
 
-  line-height: vars.$lineHeightL;
+  font-family: serif;
 
   content: "*";
   position: absolute;

@@ -26,6 +26,9 @@
   </div>
 </template>
 <style module lang="scss">
+@use "sass:map";
+@use "@/assets/scss/vars";
+
 .userCard {
   text-align: left;
 }
@@ -37,7 +40,7 @@
 }
 
 .userCardName {
-  font-weight: 400;
+  @include vars.fontWeight("L");
 
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -46,7 +49,7 @@
 .userCardAlias {
   white-space: nowrap;
 
-  color: #999;
+  color: vars.$colorMuted;
 }
 
 .userCardAvatar {
@@ -54,23 +57,21 @@
 }
 
 .userCardSizeS {
-  font-size: 12px;
-
-  line-height: 1.3;
+  @include vars.fontSize;
 }
 
 .userCardSizeS .userCardAvatar {
   float: left;
 
-  margin-top: 4px;
-  margin-right: 10px;
+  margin-top: vars.$gap;
+  margin-right: vars.$gapL;
 }
 
 .userCardSizeS .userCardName,
 .userCardSizeS .userCardAlias {
   white-space: nowrap;
 
-  margin-left: 30px;
+  margin-left: map.get(vars.$avatarSize, 'S') + vars.$gapL;
 }
 </style>
 <script setup lang="ts">
