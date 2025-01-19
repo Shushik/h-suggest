@@ -40,6 +40,7 @@
 }
 
 .userCardName {
+  @include vars.fontSize("L");
   @include vars.fontWeight("L");
 
   white-space: nowrap;
@@ -47,6 +48,8 @@
 }
 
 .userCardAlias {
+  @include vars.fontSize;
+
   white-space: nowrap;
 
   color: vars.$colorMuted;
@@ -54,10 +57,6 @@
 
 .userCardAvatar {
   float: left;
-}
-
-.userCardSizeS {
-  @include vars.fontSize;
 }
 
 .userCardSizeS .userCardAvatar {

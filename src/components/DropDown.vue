@@ -222,6 +222,10 @@ function onHide() {
   hoveredItemPos.value = -1
   selectedItemPos.value = -1
 
+  if (itemsRef.value) {
+    itemsRef.value.scrollTop = 0
+  }
+
   setHoveredItemRef(null)
 
   window.removeEventListener('click', onOuterClick)
