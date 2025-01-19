@@ -43,6 +43,8 @@
 <style module lang="scss">
 @use "@/assets/scss/vars";
 
+$itemHeightMin: 48px;
+
 .dropDown {
   position: relative;
 }
@@ -50,7 +52,7 @@
 .dropDownItem {
   cursor: pointer;
 
-  min-height: vars.$inputHeightMin;
+  min-height: $itemHeightMin;
   padding: vars.$gapL vars.$gapL;
   box-sizing: border-box;
 }
@@ -74,7 +76,7 @@
   transform: translateX(-50%);
 
   min-width: 100%;
-  max-height: 160px;
+  max-height: $itemHeightMin * 4;
   margin-top: vars.$gap;
   overflow-y: auto;
 
