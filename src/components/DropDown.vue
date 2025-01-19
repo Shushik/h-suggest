@@ -51,7 +51,7 @@
   cursor: pointer;
 
   min-height: vars.$inputHeightMin;
-  padding: vars.$gap vars.$gapL;
+  padding: vars.$gapL vars.$gapL;
   box-sizing: border-box;
 }
 

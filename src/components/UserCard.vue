@@ -52,6 +52,8 @@
 
   white-space: nowrap;
 
+  margin-top: vars.$gapS;
+
   color: vars.$colorMuted;
 }
 
@@ -62,7 +64,7 @@
 .userCardSizeS .userCardAvatar {
   float: left;
 
-  margin-top: vars.$gap;
+  margin-top: vars.$gapL;
   margin-right: vars.$gapL;
 }
 
