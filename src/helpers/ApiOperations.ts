@@ -16,7 +16,7 @@ export const API_HTTP_MESSAGES = Object.
     return out
   }, { })
 
-export const ApiTimeout = 5000
+export const API_TIMEOUT = 5000
 
 export class ApiRequest<TRes = void, TErr = void> {
 
@@ -39,7 +39,7 @@ export class ApiRequest<TRes = void, TErr = void> {
     const { signal } = this._ctrl
     let raw = <Response | null>null
 
-    this._timer = setTimer(() => this.abort(), timeout || ApiTimeout)
+    this._timer = setTimer(() => this.abort(), timeout || API_TIMEOUT)
 
     try {
       raw = await fetch(this.url, { signal, ...this.args })
