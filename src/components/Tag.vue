@@ -4,7 +4,7 @@
     <i
       v-if="removable"
       :class="$style.remove"
-      title="Очистить"
+      :title="removeTitle"
       @click="$emit('remove')"
     >✕</i>
   </div>
@@ -43,6 +43,7 @@
 <script setup lang="ts">
 interface IProps {
   removable?: boolean
+  removeTitle?: string
 }
 
 defineEmits([ 'remove' ])
