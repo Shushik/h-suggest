@@ -31,6 +31,7 @@
   @include vars.fontSize("S");
   @include vars.fontWeight("L");
 
+  font-family: serif;
   font-style: normal;
 
   display: inline-block;
