@@ -318,7 +318,6 @@ function onKeydown(event: KeyboardEvent) {
     case 'Escape':
       event.preventDefault()
       onHide()
-      console.log('Escape')
       break
 
     case 38:

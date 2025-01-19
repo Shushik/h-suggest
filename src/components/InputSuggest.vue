@@ -221,9 +221,7 @@ function onFocus() {
 }
 
 function onSelect(raw?: TItem | null) {
-  if (!raw) {
-    return
-  }
+  dropdownValue.value = raw
 
   emit('update:modelValue', raw)
 }
