@@ -64,7 +64,7 @@
 .userCardSizeS .userCardAvatar {
   float: left;
 
-  margin-top: vars.$gapL;
+  margin-top: vars.$gap;
   margin-right: vars.$gapL;
 }
 
