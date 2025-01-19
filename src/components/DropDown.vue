@@ -238,6 +238,8 @@ function onShow() {
     return
   }
 
+  innerClick = false
+
   isShown.value = true
 
   if (itemsRef.value) {
