@@ -79,6 +79,7 @@ $itemHeightMin: 48px;
   min-width: 100%;
   max-height: $itemHeightMin * $itemsInScroll;
   margin-top: vars.$gap;
+  margin-bottom: vars.$gap;
   overflow-y: auto;
 
   background: vars.$backgroundLight;
@@ -92,7 +93,7 @@ $itemHeightMin: 48px;
 </style>
 <script setup lang="ts" generic="TItem">
 import { ref, watch, nextTick } from 'vue'
-import { setTimer, clearTimer } from '@/helpers/TimerOperations'
+import { clearTimer, debounceAction } from '@/helpers/TimerOperations'
 
 interface IProps {
   shown?: boolean
@@ -129,8 +130,10 @@ const anchorRef = ref<HTMLElement | null>(null)
 const hoveredItemRef = ref<HTMLElement | null>(null)
 
 let mouseTimerId = <TimerId>null
-let resizeTimerId = <TimerId>null
 let innerClick = false
+
+const onDebouncedResize = debounceAction(changePosition, POSITION_TIMER)
+const onDebouncedMouseout = debounceAction(() => unhoverItem, MOUSEOUT_TIMER)
 
 watch(() => props.shown, (val: boolean) => {
   if (val) {
@@ -178,6 +181,10 @@ function hoverItem(itemPos: number) {
   hoveredItemPos.value = itemPos
 
   nextTick(scrollItems)
+}
+
+function unhoverItem() {
+  hoveredItemPos.value = -1
 }
 
 function scrollItems() {
@@ -232,7 +239,7 @@ function onHide() {
   setHoveredItemRef(null)
 
   window.removeEventListener('click', onOuterClick)
-  window.removeEventListener('resize', onOuterResize)
+  window.removeEventListener('resize', onDebouncedResize)
   window.removeEventListener('keydown', onKeydown)
 }
 
@@ -252,7 +259,7 @@ function onShow() {
   changePosition()
 
   window.addEventListener('click', onOuterClick)
-  window.addEventListener('resize', onOuterResize)
+  window.addEventListener('resize', onDebouncedResize)
   window.addEventListener('keydown', onKeydown)
 }
 
@@ -284,13 +291,6 @@ function onOuterClick() {
   onHide()
 }
 
-function onOuterResize() {
-  resizeTimerId = clearTimer(resizeTimerId)
-  resizeTimerId = setTimer(() => {
-    changePosition()
-  }, POSITION_TIMER)
-}
-
 function changePosition() {
   if (!itemsRef.value || !anchorRef.value) {
     return
@@ -313,29 +313,25 @@ function changePosition() {
 }
 
 function onKeydown(event: KeyboardEvent) {
-  const key = event.key || event.keyCode
+  const key = event.key
 
   switch (key) {
 
-    case 13:
     case 'Enter':
       event.preventDefault()
       selectHoveredItem()
       break
 
-    case 27:
     case 'Escape':
       event.preventDefault()
       onHide()
       break
 
-    case 38:
     case 'ArrowUp':
       event.preventDefault()
       hoverPrevItem()
       break
 
-    case 40:
     case 'ArrowDown':
       event.preventDefault()
       hoverNextItem()
@@ -345,14 +341,11 @@ function onKeydown(event: KeyboardEvent) {
 }
 
 function onMouseout() {
-  mouseTimerId = clearTimer(mouseTimerId)
-  mouseTimerId = setTimer(() => {
-    hoveredItemPos.value = -1
-  }, MOUSEOUT_TIMER)
+  mouseTimerId = onDebouncedMouseout()
 }
 
 function onMouseover(itemPos: number) {
-  mouseTimerId = clearTimer(mouseTimerId)
+  clearTimer(mouseTimerId)
 
   hoveredItemPos.value = itemPos
 }
