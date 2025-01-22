@@ -94,6 +94,7 @@ $itemHeightMin: 48px;
 <script setup lang="ts" generic="TItem">
 import { ref, watch, nextTick } from 'vue'
 import { clearTimer, debounceAction } from '@/helpers/TimerOperations'
+import { handlePreventDefault } from '@/helpers/EventOperations.ts'
 
 interface IProps {
   shown?: boolean
@@ -318,23 +319,19 @@ function onKeydown(event: KeyboardEvent) {
   switch (key) {
 
     case 'Enter':
-      event.preventDefault()
-      selectHoveredItem()
+      handlePreventDefault(selectHoveredItem, event)
       break
 
     case 'Escape':
-      event.preventDefault()
-      onHide()
+      handlePreventDefault(onHide, event)
       break
 
     case 'ArrowUp':
-      event.preventDefault()
-      hoverPrevItem()
+      handlePreventDefault(hoverPrevItem, event)
       break
 
     case 'ArrowDown':
-      event.preventDefault()
-      hoverNextItem()
+      handlePreventDefault(hoverNextItem, event)
       break
 
   }

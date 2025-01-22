@@ -128,6 +128,7 @@
 import DropDown from '@/components/DropDown.vue'
 import { ref, watch, nextTick, onMounted } from 'vue'
 import { debounceAction } from '@/helpers/TimerOperations'
+import {handlePreventDefault} from "~/helpers/EventOperations.ts";
 
 interface IProps {
   disabled?: boolean
@@ -270,9 +271,9 @@ function onKeydown(event: KeyboardEvent, shown?: boolean) {
   switch (key) {
 
     case 'ArrowDown':
-        event.preventDefault()
+        // event.preventDefault()
 
-        showSuggest()
+      handlePreventDefault(showSuggest, event)
       break
 
   }
