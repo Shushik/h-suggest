@@ -18,7 +18,7 @@ export const API_HTTP_MESSAGES = Object.
 
 export const API_TIMEOUT = 5000
 
-export class ApiRequest<TRes = void, TErr = void> {
+export class ApiRequest<TRes = void, TErr extends string = ''> {
 
   url: string = ''
 
@@ -49,7 +49,7 @@ export class ApiRequest<TRes = void, TErr = void> {
 
     this._timer = clearTimer(this._timer)
 
-    return await this.parse(raw)
+    return await this.parseRes(raw)
   }
 
   abort() {
@@ -60,7 +60,7 @@ export class ApiRequest<TRes = void, TErr = void> {
     }
   }
 
-  async parse(raw: Response | null): Promise<IApiRes<TRes, TErr>> {
+  async parseRes(raw: Response | null): Promise<IApiRes<TRes, TErr>> {
     if (!raw) {
       return { error: 'UNKNOWN' }
     }
@@ -68,11 +68,19 @@ export class ApiRequest<TRes = void, TErr = void> {
     if (!raw.ok) {
       if (raw.status && raw.status >= 400) {
         return {
-          error: (API_HTTP_MESSAGES[raw.status] as TApiErr<string>) || 'NO_HTTP_CODE'
+          error: (API_HTTP_MESSAGES[raw.status] as TApiErr<TErr>) || 'NO_HTTP_CODE'
         }
       }
 
       return { error: 'NOT_OK' }
+    }
+
+    return this.parseJSON(raw)
+  }
+
+  async parseJSON(raw: Response | null): Promise<IApiRes<TRes, TErr>> {
+    if (!raw) {
+      return { error: 'NO_JSON_DATA' }
     }
 
     let json = <IApiRaw<TRes> | null>null
@@ -92,7 +100,7 @@ export class ApiRequest<TRes = void, TErr = void> {
 
 }
 
-export function useApiRequest<TRes = void, TErr = void>(
+export function useApiRequest<TRes = void, TErr extends string = ''>(
   url: string,
   args?: IApiArgs
 ): Promise<IApiRes<TRes, TErr>> {
