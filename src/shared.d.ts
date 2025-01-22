@@ -6,7 +6,7 @@ export declare global {
     headers?: { [id: string]: string }
   }
 
-  export type TApiErr<TErr> = TErr |
+  export type TApiErr<TErr extends string> = TErr |
     'UNKNOWN' |
     'ABORTED' |
     'NOT_OK' |

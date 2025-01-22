@@ -18,7 +18,7 @@ export const API_HTTP_MESSAGES = Object.
 
 export const API_TIMEOUT = 5000
 
-export class ApiRequest<TRes = void, TErr = void> {
+export class ApiRequest<TRes = void, TErr extends string = ''> {
 
   url: string = ''
 
@@ -92,7 +92,7 @@ export class ApiRequest<TRes = void, TErr = void> {
 
 }
 
-export function useApiRequest<TRes = void, TErr = void>(
+export function useApiRequest<TRes = void, TErr extends string = ''>(
   url: string,
   args?: IApiArgs
 ): Promise<IApiRes<TRes, TErr>> {
