@@ -1,7 +1,6 @@
 <template>
   <div
     :class="$style.dropDown"
-    @click="onInnerClick"
   >
     <slot
       :isShown="isShown"
@@ -94,7 +93,7 @@ $itemHeightMin: 48px;
 <script setup lang="ts" generic="TItem">
 import { ref, watch, nextTick } from 'vue'
 import { clearTimer, debounceAction } from '@/helpers/TimerOperations'
-import { handlePreventDefault } from '@/helpers/EventOperations.ts'
+import { handleOuterEvent, handlePreventDefault } from '@/helpers/EventOperations.ts'
 
 interface IProps {
   shown?: boolean
@@ -131,7 +130,6 @@ const anchorRef = ref<HTMLElement | null>(null)
 const hoveredItemRef = ref<HTMLElement | null>(null)
 
 let mouseTimerId = <TimerId>null
-let innerClick = false
 
 const onDebouncedResize = debounceAction(changePosition, POSITION_TIMER)
 const onDebouncedMouseout = debounceAction(() => unhoverItem, MOUSEOUT_TIMER)
@@ -249,8 +247,6 @@ function onShow() {
     return
   }
 
-  innerClick = false
-
   isShown.value = true
 
   if (itemsRef.value) {
@@ -278,18 +274,12 @@ function onClick(itemPos: number) {
   emit('update:modelValue', item)
 }
 
-function onInnerClick() {
-  innerClick = true
-}
-
-function onOuterClick() {
-  if (innerClick) {
-    innerClick = false
-
-    return
-  }
-
-  onHide()
+function onOuterClick(event: Event) {
+  handleOuterEvent(
+    event,
+    [ itemsRef.value, anchorRef.value ],
+    onHide
+  )
 }
 
 function changePosition() {
