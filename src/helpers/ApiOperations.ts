@@ -49,7 +49,7 @@ export class ApiRequest<TRes = void, TErr extends string = ''> {
 
     this._timer = clearTimer(this._timer)
 
-    return await this.parse(raw)
+    return await this.parseRes(raw)
   }
 
   abort() {
@@ -60,7 +60,7 @@ export class ApiRequest<TRes = void, TErr extends string = ''> {
     }
   }
 
-  async parse(raw: Response | null): Promise<IApiRes<TRes, TErr>> {
+  async parseRes(raw: Response | null): Promise<IApiRes<TRes, TErr>> {
     if (!raw) {
       return { error: 'UNKNOWN' }
     }
@@ -73,6 +73,14 @@ export class ApiRequest<TRes = void, TErr extends string = ''> {
       }
 
       return { error: 'NOT_OK' }
+    }
+
+    return this.parseJSON(raw)
+  }
+
+  async parseJSON(raw: Response | null): Promise<IApiRes<TRes, TErr>> {
+    if (!raw) {
+      return { error: 'NO_JSON_DATA' }
     }
 
     let json = <IApiRaw<TRes> | null>null

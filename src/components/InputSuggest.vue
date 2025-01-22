@@ -142,7 +142,7 @@ interface IProps {
   placeholder?: string
   autocomplete?: 'on' | 'off'
   modelValue?: TItem | null
-  getData: (raw: string) => Promise<IApiRes<TItem[]>>
+  getData: (raw: string) => Promise<IApiRes<TItem[], ''>>
   getValue: (raw: TItem) => string
 }
 
