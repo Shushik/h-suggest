@@ -127,7 +127,7 @@
 <script setup lang="ts" generic="TItem">
 import DropDown from '@/components/DropDown.vue'
 import { ref, watch, nextTick, onMounted } from 'vue'
-import { setTimer, clearTimer } from '@/helpers/TimerOperations'
+import { debounceAction } from '@/helpers/TimerOperations'
 
 interface IProps {
   disabled?: boolean
@@ -168,10 +168,10 @@ const inputRef = ref<HTMLInputElement | null>(null)
 const inputItems = ref<TItem[] | null>(null)
 const dropdownValue = ref<unknown>(null)
 
-let timerId = <TimerId>null
+const onDebouncedChange = debounceAction(onChange, ONCHANGE_INTERVAL)
 
 watch(() => props.modelValue, (val?: TItem | null) => onSelect(val))
-watch(() => inputValue.value, (val: string) => onDelayChange(val))
+watch(() => inputValue.value, onDebouncedChange)
 watch(() => dropdownValue.value, (val: unknown) => onSelect(val as TItem | null))
 onMounted(() => onSelect(props.modelValue))
 
@@ -226,11 +226,6 @@ function onSelect(raw?: TItem | null) {
   emit('update:modelValue', raw)
 }
 
-function onDelayChange(val?: string) {
-  timerId = clearTimer(timerId)
-  timerId = setTimer(() => onChange(val), ONCHANGE_INTERVAL)
-}
-
 async function onChange(val?: string) {
   isShown.value = false
   hasError.value = false
@@ -268,13 +263,12 @@ function onKeydown(event: KeyboardEvent, shown?: boolean) {
     return
   }
 
-  const key = event.key || event.keyCode
+  const key = event.key
 
   hasError.value = false
 
   switch (key) {
 
-    case 40:
     case 'ArrowDown':
         event.preventDefault()
 
