@@ -68,7 +68,7 @@ export class ApiRequest<TRes = void, TErr extends string = ''> {
     if (!raw.ok) {
       if (raw.status && raw.status >= 400) {
         return {
-          error: (API_HTTP_MESSAGES[raw.status] as TApiErr<string>) || 'NO_HTTP_CODE'
+          error: (API_HTTP_MESSAGES[raw.status] as TApiErr<TErr>) || 'NO_HTTP_CODE'
         }
       }
 
