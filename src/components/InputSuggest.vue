@@ -271,9 +271,7 @@ function onKeydown(event: KeyboardEvent, shown?: boolean) {
   switch (key) {
 
     case 'ArrowDown':
-        // event.preventDefault()
-
-      handlePreventDefault(showSuggest, event)
+      handlePreventDefault(event, showSuggest)
       break
 
   }

@@ -319,19 +319,19 @@ function onKeydown(event: KeyboardEvent) {
   switch (key) {
 
     case 'Enter':
-      handlePreventDefault(selectHoveredItem, event)
+      handlePreventDefault(event, selectHoveredItem)
       break
 
     case 'Escape':
-      handlePreventDefault(onHide, event)
+      handlePreventDefault(event, onHide)
       break
 
     case 'ArrowUp':
-      handlePreventDefault(hoverPrevItem, event)
+      handlePreventDefault(event, hoverPrevItem)
       break
 
     case 'ArrowDown':
-      handlePreventDefault(hoverNextItem, event)
+      handlePreventDefault(event, hoverNextItem)
       break
 
   }
