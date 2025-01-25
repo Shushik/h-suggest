@@ -132,7 +132,7 @@ const hoveredItemRef = ref<HTMLElement | null>(null)
 let mouseTimerId = <TimerId>null
 
 const onDebouncedResize = debounceAction(changePosition, POSITION_TIMER)
-const onDebouncedMouseout = debounceAction(() => unhoverItem, MOUSEOUT_TIMER)
+const onDebouncedMouseout = debounceAction(unhoverItem, MOUSEOUT_TIMER)
 
 watch(() => props.shown, (val: boolean) => {
   if (val) {
