@@ -29,9 +29,9 @@
   $offsetY: 0,
   $blur: getGap("XXL"),
   $spread: 0,
-  $inset: 'none',
+  $inset: "none",
 ) {
-  @if $inset != 'none' {
+  @if $inset != "none" {
     @return inset $offsetX $offsetY $blur $spread getColor($pick, $opacity);
   }
 
@@ -144,7 +144,7 @@ $avatarSize: (
   $offsetY: 0,
   $blur: getGap("XXL"),
   $spread: 0,
-  $inset: 'none',
+  $inset: "none",
 ) {
   box-shadow: getShadow($pick, $opacity, $offsetX, $offsetY, $blur, $spread, $inset);
 }
