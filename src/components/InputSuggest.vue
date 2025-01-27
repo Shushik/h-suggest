@@ -98,13 +98,10 @@
 
 .input::placeholder {
   @include vars.color("Muted");
-  //color: vars.$colorMuted;
 }
 
 .inputSuggestIsFocused .trigger {
   border-color: #{vars.pickColor("BorderHovered")};
-  //@include vars.color("BorderHovered");
-  //border-color: vars.$colorBorderHovered;
 }
 
 .inputSuggestIsDisabled .input,
@@ -115,15 +112,12 @@
 .inputSuggestIsDisabled .trigger,
 .inputSuggestIsDisabled.inputSuggestIsFocused .trigger {
   @include vars.backgroundColor("BackgroundDisabled");
-  //background-color: vars.$backgroundDisabled;
 }
 
 .inputSuggestHasError .trigger {
-  @include vars.boxShadow(vars.pickColor("Important"));
-  //@include vars.boxShadow(vars.$colorImportant);
+  @include vars.shadow("Important");
 
   border-color: #{vars.pickColor("Important")};
-  //border-color: vars.$colorImportant;
 }
 
 .inputSuggestIsReadonly .input,

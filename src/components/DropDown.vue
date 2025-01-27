@@ -67,7 +67,7 @@ $itemHeightMin: 48px;
 
 .dropDownItems {
   @include vars.fontSize("XL");
-  @include vars.boxShadow;
+  @include vars.shadow;
   @include vars.zIndex;
   @include vars.backgroundColor("BackgroundLight");
 

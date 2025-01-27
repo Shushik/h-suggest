@@ -101,8 +101,32 @@ $avatarSize: (
   background-color: pickColor($pick);
 }
 
-@mixin boxShadow($pick: "BackgroundDark") {
-  box-shadow: 0 1px $gapXXL pickColor($pick, 0.3);
+@function getShadow(
+  $pick: "BackgroundDark",
+  $opacity: 0.3,
+  $offsetX: 0,
+  $offsetY: 0,
+  $blur: $gapXXL,
+  $spread: 0,
+  $inset: 'none',
+) {
+  @if $inset != 'none' {
+    @return inset $offsetX $offsetY $blur $spread pickColor($pick, $opacity);
+  }
+
+  @return $offsetX $offsetY $blur $spread pickColor($pick, $opacity);
+}
+
+@mixin shadow(
+  $pick: "BackgroundDark",
+  $opacity: 0.3,
+  $offsetX: 0,
+  $offsetY: 0,
+  $blur: $gapXXL,
+  $spread: 0,
+  $inset: 'none',
+) {
+  box-shadow: getShadow($pick, $opacity, $offsetX, $offsetY, $blur, $spread, $inset);
 }
 
 @mixin avatarSize($size: "M") {
