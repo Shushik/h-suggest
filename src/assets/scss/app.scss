@@ -52,6 +52,8 @@ body {
 
 body {
   @include vars.fontSize;
+  @include vars.color;
+  @include vars.backgroundColor;
 
   font-family: "PT Sans", sans-serif;
 
@@ -60,9 +62,6 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-
-  color: vars.$colorDark;
-  background: vars.$backgroundLight;
 }
 
 * {

@@ -53,22 +53,23 @@ $itemHeightMin: 48px;
   cursor: pointer;
 
   min-height: $itemHeightMin;
-  padding: vars.$gapL vars.$gapL;
+  padding: vars.getGap('L');
   box-sizing: border-box;
 }
 
 .dropDownItemIsHovered {
-  background: vars.$backgroundHovered;
+  @include vars.backgroundColor("BackgroundHovered");
 }
 
 .dropDownItemIsSelected {
-  background: vars.$backgroundSelected;
+  @include vars.backgroundColor("BackgroundSelected");
 }
 
 .dropDownItems {
   @include vars.fontSize("XL");
-  @include vars.boxShadow;
+  @include vars.shadow;
   @include vars.zIndex;
+  @include vars.backgroundColor("BackgroundLight");
 
   position: absolute;
   top: 100%;
@@ -77,12 +78,11 @@ $itemHeightMin: 48px;
 
   min-width: 100%;
   max-height: $itemHeightMin * $itemsInScroll;
-  margin-top: vars.$gap;
-  margin-bottom: vars.$gap;
+  margin-top: vars.getGap();
+  margin-bottom: vars.getGap();
   overflow-y: auto;
 
-  background: vars.$backgroundLight;
-  border-radius: vars.$gap;
+  border-radius: vars.getGap();
 }
 
 .dropDownItems[data-position="top"] {

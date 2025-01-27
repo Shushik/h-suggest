@@ -60,10 +60,13 @@
   </div>
 </template>
 <style module lang="scss">
+@use "sass:meta";
 @use "@/assets/scss/vars";
 
 .trigger {
   @include vars.fontSize("XL");
+  @include vars.color;
+  @include vars.backgroundColor;
 
   display: flex;
   align-items: center;
@@ -71,13 +74,11 @@
   width: 100%;
   min-width: vars.$inputWidthMin;
   min-height: vars.$inputHeightMin;
-  padding: vars.$gap vars.$gapL;
+  padding: vars.getGap() vars.getGap("L");
   box-sizing: border-box;
 
-  color: vars.$colorDark;
-  background: vars.$backgroundLight;
-  border: vars.$colorBorderDefault solid 1px;
-  border-radius: vars.$gap;
+  border: #{vars.getColor("BorderDefault")} solid 1px;
+  border-radius: vars.getGap();
 
   transition: border-color vars.$transitionDelay;
 }
@@ -96,11 +97,11 @@
 }
 
 .input::placeholder {
-  color: vars.$colorMuted;
+  @include vars.color("Muted");
 }
 
 .inputSuggestIsFocused .trigger {
-  border-color: vars.$colorBorderHovered;
+  border-color: #{vars.getColor("BorderHovered")};
 }
 
 .inputSuggestIsDisabled .input,
@@ -110,13 +111,13 @@
 
 .inputSuggestIsDisabled .trigger,
 .inputSuggestIsDisabled.inputSuggestIsFocused .trigger {
-  background-color: vars.$backgroundDisabled;
+  @include vars.backgroundColor("BackgroundDisabled");
 }
 
 .inputSuggestHasError .trigger {
-  @include vars.boxShadow(vars.$colorImportant);
+  @include vars.shadow("Important");
 
-  border-color: vars.$colorImportant;
+  border-color: #{vars.getColor("Important")};
 }
 
 .inputSuggestIsReadonly .input,

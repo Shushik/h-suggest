@@ -15,14 +15,14 @@
 .tag {
   @include vars.fontSize;
   @include vars.fontWeight("L");
+  @include vars.color("Light");
+  @include vars.backgroundColor("TagDefault");
 
   display: inline-block;
 
-  padding: vars.$gap vars.$gapL;
+  padding: vars.getGap() vars.getGap("L");
 
-  color: vars.$colorLight;
-  background: vars.$colorTagDefault;
-  border-radius: vars.$gapS;
+  border-radius: vars.getGap("S");
 
   user-select: none;
 }
@@ -37,7 +37,7 @@
   display: inline-block;
   cursor: pointer;
 
-  margin-left: vars.$gapL;
+  margin-left: vars.getGap("L");
 }
 </style>
 <script setup lang="ts">
