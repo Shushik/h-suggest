@@ -53,7 +53,7 @@ $itemHeightMin: 48px;
   cursor: pointer;
 
   min-height: $itemHeightMin;
-  padding: vars.$gapL vars.$gapL;
+  padding: vars.getGap('L');
   box-sizing: border-box;
 }
 
@@ -78,11 +78,11 @@ $itemHeightMin: 48px;
 
   min-width: 100%;
   max-height: $itemHeightMin * $itemsInScroll;
-  margin-top: vars.$gap;
-  margin-bottom: vars.$gap;
+  margin-top: vars.getGap();
+  margin-bottom: vars.getGap();
   overflow-y: auto;
 
-  border-radius: vars.$gap;
+  border-radius: vars.getGap();
 }
 
 .dropDownItems[data-position="top"] {

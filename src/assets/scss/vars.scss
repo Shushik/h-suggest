@@ -1,5 +1,52 @@
 @use "sass:map";
 
+@function getGap($pick: "M") {
+  @if not map.has-key($gap, $pick) {
+    @warn "Unknown gap size: #{$pick}";
+    @return null;
+  }
+
+  @return map.get($gap, $pick);
+}
+
+@function getColor($pick: "Dark", $opacity: 1) {
+  @if not map.has-key($color, $pick) {
+    @warn "Unknown color: #{$pick}";
+    @return null;
+  }
+
+  @if $opacity < 1 {
+    @return rgba(map.get($color, $pick), $opacity);
+  }
+
+  @return  map.get($color, $pick);
+}
+
+@function getShadow(
+  $pick: "BackgroundDark",
+  $opacity: 0.3,
+  $offsetX: 0,
+  $offsetY: 0,
+  $blur: getGap("XXL"),
+  $spread: 0,
+  $inset: 'none',
+) {
+  @if $inset != 'none' {
+    @return inset $offsetX $offsetY $blur $spread getColor($pick, $opacity);
+  }
+
+  @return $offsetX $offsetY $blur $spread getColor($pick, $opacity);
+}
+
+@function getAvatarSize($size: "M") {
+  @if not map.has-key($avatarSize, $size) {
+    @warn "Unknown avatar size: #{$size}";
+    @return null;
+  }
+
+  @return map.get($avatarSize, $size);
+}
+
 $fontSize: (
   M: 12px,
   S: 10px,
@@ -36,19 +83,21 @@ $color: (
   BackgroundSelected: #F4F4F4,
 );
 
-$gap: 4px;
-$gapS: 2px;
-$gapXS: 1px;
-$gapL: $gap * 2;
-$gapXL: $gap * 3;
-$gapXXL: $gap * 4;
+$gap: (
+  M: 4px,
+  S: 2px,
+  XS: 1px,
+  L: 8px,
+  XL: 12px,
+  XXL: 16px,
+);
 
 $transitionDelay: 0.3s;
 
 $inputWidthMin: 300px;
 $inputHeightMin: 40px;
 
-$formMinWidth: 600px + ($gapL * 2);
+$formMinWidth: 600px + (getGap("L") * 2);
 
 $formFieldWidthMin: 200px;
 
@@ -80,19 +129,6 @@ $avatarSize: (
   font-weight: map.get($fontWeight, $weight);
 }
 
-@function getColor($pick: "Dark", $opacity: 1) {
-  @if not map.has-key($color, $pick) {
-    @warn "Unknown color: #{$pick}";
-    @return "";
-  }
-
-  @if $opacity < 1 {
-    @return rgba(map.get($color, $pick), $opacity);
-  }
-
-  @return  map.get($color, $pick);
-}
-
 @mixin color($pick: "Dark") {
   color: getColor($pick);
 }
@@ -101,28 +137,12 @@ $avatarSize: (
   background-color: getColor($pick);
 }
 
-@function getShadow(
-  $pick: "BackgroundDark",
-  $opacity: 0.3,
-  $offsetX: 0,
-  $offsetY: 0,
-  $blur: $gapXXL,
-  $spread: 0,
-  $inset: 'none',
-) {
-  @if $inset != 'none' {
-    @return inset $offsetX $offsetY $blur $spread getColor($pick, $opacity);
-  }
-
-  @return $offsetX $offsetY $blur $spread getColor($pick, $opacity);
-}
-
 @mixin shadow(
   $pick: "BackgroundDark",
   $opacity: 0.3,
   $offsetX: 0,
   $offsetY: 0,
-  $blur: $gapXXL,
+  $blur: getGap("XXL"),
   $spread: 0,
   $inset: 'none',
 ) {
@@ -134,8 +154,8 @@ $avatarSize: (
     @warn "Unknown avatar size: #{$size}";
   }
 
-  width: map.get($avatarSize, $size);
-  height: map.get($avatarSize, $size);
+  width: getAvatarSize($size);
+  height: getAvatarSize($size);
 }
 
 @mixin zIndex($add: 0) {

@@ -20,9 +20,9 @@
 
   display: inline-block;
 
-  padding: vars.$gap vars.$gapL;
+  padding: vars.getGap() vars.getGap("L");
 
-  border-radius: vars.$gapS;
+  border-radius: vars.getGap("S");
 
   user-select: none;
 }
@@ -37,7 +37,7 @@
   display: inline-block;
   cursor: pointer;
 
-  margin-left: vars.$gapL;
+  margin-left: vars.getGap("L");
 }
 </style>
 <script setup lang="ts">

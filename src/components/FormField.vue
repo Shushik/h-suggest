@@ -27,7 +27,7 @@
 }
 
 @mixin horisontal_layout_label {
-  margin-bottom: vars.$gapL;
+  margin-bottom: vars.getGap("L");
 }
 
 .formField {
@@ -52,7 +52,7 @@
   display: block;
 
   min-width: vars.$formFieldWidthMin;
-  padding-right: vars.$gapXXL;
+  padding-right: vars.getGap("XXL");
   box-sizing: border-box;
 }
 
@@ -63,7 +63,7 @@
 .formFieldIsRequired .formFieldLabel {
   position: relative;
 
-  padding-left: vars.$gapXL;
+  padding-left: vars.getGap("XL");
 }
 
 .formFieldIsRequired .formFieldLabel::before {
@@ -75,7 +75,7 @@
 
   content: "*";
   position: absolute;
-  top: vars.$gap;
+  top: vars.getGap();
   left: 0;
 }
 

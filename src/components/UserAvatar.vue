@@ -32,7 +32,7 @@
 
   overflow: hidden;
 
-  border-radius: vars.$gapL;
+  border-radius: vars.getGap("L");
 }
 
 .userAvatar::before {

@@ -17,7 +17,7 @@
 
 .form {
   min-width: vars.$formMinWidth;
-  padding: vars.$gapXL;
+  padding: vars.getGap("XL");
   box-sizing: border-box;
 }
 </style>

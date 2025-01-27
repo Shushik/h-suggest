@@ -53,7 +53,7 @@
 
   white-space: nowrap;
 
-  margin-top: vars.$gapS;
+  margin-top: vars.getGap("S");
 }
 
 .userCardAvatar {
@@ -63,15 +63,15 @@
 .userCardSizeS .userCardAvatar {
   float: left;
 
-  margin-top: vars.$gap;
-  margin-right: vars.$gapL;
+  margin-top: vars.getGap();
+  margin-right: vars.getGap("L");
 }
 
 .userCardSizeS .userCardName,
 .userCardSizeS .userCardAlias {
   white-space: nowrap;
 
-  margin-left: map.get(vars.$avatarSize, 'S') + vars.$gapL;
+  margin-left: vars.getAvatarSize("S") + vars.getGap("L");
 }
 </style>
 <script setup lang="ts">

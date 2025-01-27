@@ -74,11 +74,11 @@
   width: 100%;
   min-width: vars.$inputWidthMin;
   min-height: vars.$inputHeightMin;
-  padding: vars.$gap vars.$gapL;
+  padding: vars.getGap() vars.getGap("L");
   box-sizing: border-box;
 
   border: #{vars.getColor("BorderDefault")} solid 1px;
-  border-radius: vars.$gap;
+  border-radius: vars.getGap();
 
   transition: border-color vars.$transitionDelay;
 }
