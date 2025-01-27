@@ -150,10 +150,6 @@ $avatarSize: (
 }
 
 @mixin avatarSize($size: "M") {
-  @if not map.has-key($avatarSize, $size) {
-    @warn "Unknown avatar size: #{$size}";
-  }
-
   width: getAvatarSize($size);
   height: getAvatarSize($size);
 }
