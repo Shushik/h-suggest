@@ -15,13 +15,13 @@
 .tag {
   @include vars.fontSize;
   @include vars.fontWeight("L");
+  @include vars.color("Light");
+  @include vars.backgroundColor("TagDefault");
 
   display: inline-block;
 
   padding: vars.$gap vars.$gapL;
 
-  color: vars.$colorLight;
-  background: vars.$colorTagDefault;
   border-radius: vars.$gapS;
 
   user-select: none;

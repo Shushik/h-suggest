@@ -58,17 +58,18 @@ $itemHeightMin: 48px;
 }
 
 .dropDownItemIsHovered {
-  background: vars.$backgroundHovered;
+  @include vars.backgroundColor("BackgroundHovered");
 }
 
 .dropDownItemIsSelected {
-  background: vars.$backgroundSelected;
+  @include vars.backgroundColor("BackgroundSelected");
 }
 
 .dropDownItems {
   @include vars.fontSize("XL");
   @include vars.boxShadow;
   @include vars.zIndex;
+  @include vars.backgroundColor("BackgroundLight");
 
   position: absolute;
   top: 100%;
@@ -81,7 +82,6 @@ $itemHeightMin: 48px;
   margin-bottom: vars.$gap;
   overflow-y: auto;
 
-  background: vars.$backgroundLight;
   border-radius: vars.$gap;
 }
 

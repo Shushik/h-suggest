@@ -49,12 +49,11 @@
 
 .userCardAlias {
   @include vars.fontSize;
+  @include vars.color("Muted");
 
   white-space: nowrap;
 
   margin-top: vars.$gapS;
-
-  color: vars.$colorMuted;
 }
 
 .userCardAvatar {

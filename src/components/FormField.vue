@@ -69,6 +69,7 @@
 .formFieldIsRequired .formFieldLabel::before {
   @include vars.fontSize("L");
   @include vars.fontWeight("XL");
+  @include vars.color("Required");
 
   font-family: serif;
 
@@ -76,8 +77,6 @@
   position: absolute;
   top: vars.$gap;
   left: 0;
-
-  color: vars.$colorImportant;
 }
 
 .formFieldLayoutV .formFieldInput,
