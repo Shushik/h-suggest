@@ -80,7 +80,7 @@ $avatarSize: (
   font-weight: map.get($fontWeight, $weight);
 }
 
-@function pickColor($pick: "Dark", $opacity: 1) {
+@function getColor($pick: "Dark", $opacity: 1) {
   @if not map.has-key($color, $pick) {
     @warn "Unknown color: #{$pick}";
     @return "";
@@ -94,11 +94,11 @@ $avatarSize: (
 }
 
 @mixin color($pick: "Dark") {
-  color: pickColor($pick);
+  color: getColor($pick);
 }
 
 @mixin backgroundColor($pick: "BackgroundLight") {
-  background-color: pickColor($pick);
+  background-color: getColor($pick);
 }
 
 @function getShadow(
@@ -111,10 +111,10 @@ $avatarSize: (
   $inset: 'none',
 ) {
   @if $inset != 'none' {
-    @return inset $offsetX $offsetY $blur $spread pickColor($pick, $opacity);
+    @return inset $offsetX $offsetY $blur $spread getColor($pick, $opacity);
   }
 
-  @return $offsetX $offsetY $blur $spread pickColor($pick, $opacity);
+  @return $offsetX $offsetY $blur $spread getColor($pick, $opacity);
 }
 
 @mixin shadow(

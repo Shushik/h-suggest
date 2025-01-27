@@ -77,7 +77,7 @@
   padding: vars.$gap vars.$gapL;
   box-sizing: border-box;
 
-  border: #{vars.pickColor("BorderDefault")} solid 1px;
+  border: #{vars.getColor("BorderDefault")} solid 1px;
   border-radius: vars.$gap;
 
   transition: border-color vars.$transitionDelay;
@@ -101,7 +101,7 @@
 }
 
 .inputSuggestIsFocused .trigger {
-  border-color: #{vars.pickColor("BorderHovered")};
+  border-color: #{vars.getColor("BorderHovered")};
 }
 
 .inputSuggestIsDisabled .input,
@@ -117,7 +117,7 @@
 .inputSuggestHasError .trigger {
   @include vars.shadow("Important");
 
-  border-color: #{vars.pickColor("Important")};
+  border-color: #{vars.getColor("Important")};
 }
 
 .inputSuggestIsReadonly .input,
