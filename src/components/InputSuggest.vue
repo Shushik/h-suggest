@@ -129,7 +129,7 @@
 import DropDown from '@/components/DropDown.vue'
 import { ref, watch, nextTick, onMounted } from 'vue'
 import { debounceAction } from '@/helpers/TimerOperations'
-import {handlePreventDefault} from "~/helpers/EventOperations.ts";
+import { handlePreventDefault } from '@/helpers/EventOperations'
 
 interface IProps {
   disabled?: boolean
